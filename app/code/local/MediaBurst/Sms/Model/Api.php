@@ -158,6 +158,13 @@ class MediaBurst_Sms_Model_Api extends Zend_Service_Abstract
             }
         }
 
+        $messageNodes = $xpath->query('//Message_Resp');
+        foreach ($messageNodes as $messageNode) {
+            $errorNumber = $xpath->evaluate('string(./ErrNo)', $messageNode);
+            $errorDescription = $xpath->evaluate('string(./ErrDesc)', $messageNode);
+            $result['errors'][] = array($errorNumber, $errorDescription);
+        }
+
         return $result;
     }
 
@@ -194,4 +201,5 @@ class MediaBurst_Sms_Model_Api extends Zend_Service_Abstract
     {
         return preg_replace('#[^\d]#', '', trim($number));
     }
+
 }
