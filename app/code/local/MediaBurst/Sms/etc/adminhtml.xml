@@ -9,17 +9,17 @@
                     <children>
                         <pending translate="title">
                             <title>Pending</title>
-                            <action>adminhtml/mediaburst_sms/pending</action>
+                            <action>adminhtml/mediaBurst_sms/pending</action>
                             <sort_order>100</sort_order>
                         </pending>
                         <sent translate="title">
                             <title>Sent</title>
-                            <action>adminhtml/mediaburst_sms/sent</action>
+                            <action>adminhtml/mediaBurst_sms/sent</action>
                             <sort_order>200</sort_order>
                         </sent>
                         <failed translate="title">
                             <title>Failed</title>
-                            <action>adminhtml/mediaburst_sms/failed</action>
+                            <action>adminhtml/mediaBurst_sms/failed</action>
                             <sort_order>300</sort_order>
                         </failed>
                     </children>
