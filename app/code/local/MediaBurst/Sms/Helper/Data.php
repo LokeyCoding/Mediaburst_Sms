@@ -161,6 +161,33 @@ class MediaBurst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements Me
         return Mage::getStoreConfig(self::XML_CONFIG_BASE_PATH . 'order_held/content', $store);
     }
 
+    public function isOrderUnheldActive($store = null)
+    {
+        if ($store === null) {
+            $store = $this->_defaultStore;
+        }
+
+        return $this->isActive($store) && Mage::getStoreConfigFlag(self::XML_CONFIG_BASE_PATH . 'order_unheld/active', $store);
+    }
+
+    public function getOrderUnheldFrom($store = null)
+    {
+        if ($store === null) {
+            $store = $this->_defaultStore;
+        }
+
+        return Mage::getStoreConfig(self::XML_CONFIG_BASE_PATH . 'order_unheld/from', $store);
+    }
+
+    public function getOrderUnheldContent($store = null)
+    {
+        if ($store === null) {
+            $store = $this->_defaultStore;
+        }
+
+        return Mage::getStoreConfig(self::XML_CONFIG_BASE_PATH . 'order_unheld/content', $store);
+    }
+
     public function isOrderShippedActive($store = null)
     {
         if ($store === null) {

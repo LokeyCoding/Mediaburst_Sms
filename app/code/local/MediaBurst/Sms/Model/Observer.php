@@ -79,6 +79,29 @@ class MediaBurst_Sms_Model_Observer
         }
     }
 
+    public function createOrderUnheldMessage(Varien_Event_Observer $observer)
+    {
+        $order = $observer->getOrder();
+        if ($order instanceof Mage_Sales_Model_Order) {
+            /* @var $order Mage_Sales_Model_Order */
+            if (!$this->getHelper()->isOrderUnheldActive($order->getStoreId())) {
+                return;
+            }
+            if ($order->getState() !== $order->getOrigData('state') && $order->getOrigData('state') === Mage_Sales_Model_Order::STATE_HOLDED) {
+                try {
+                    $message = Mage::getModel('MediaBurst_Sms/Message');
+                    $message->setStoreId($order->getStoreId());
+                    $message->setTo($order->getBillingAddress()->getTelephone());
+                    $message->setFrom($this->getHelper()->getOrderUnheldFrom());
+                    $message->setContent($this->getHelper()->generateOrderUnheldContent($order));
+                    $message->save();
+                } catch (Exception $e) {
+                    $this->getHelper()->log('Error creating Order Held SMS Message Record for Order ' . $order->getIncrementId(), Zend_Log::ERR);
+                }
+            }
+        }
+    }
+
     /**
      * Cron Job
      */
@@ -123,8 +146,7 @@ class MediaBurst_Sms_Model_Observer
 
             $results = $api->sendMessages($collection->getItems());
 
-            if($session instanceof Mage_Core_Model_Session_Abstract)
-            {
+            if ($session instanceof Mage_Core_Model_Session_Abstract) {
                 $this->getHelper()->reportResults($session, $results);
             }
         }

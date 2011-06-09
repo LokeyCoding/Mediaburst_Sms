@@ -40,26 +40,30 @@
         <events>
             <sales_order_save_after>
                 <observers>
-                    <MediaBurst_Sms>
+                    <MediaBurst_Sms_Held>
                         <class>MediaBurst_Sms/Observer</class>
                         <method>createOrderHeldMessage</method>
-                    </MediaBurst_Sms>
+                    </MediaBurst_Sms_Held>
+                    <MediaBurst_Sms_Unheld>
+                        <class>MediaBurst_Sms/Observer</class>
+                        <method>createOrderUnheldMessage</method>
+                    </MediaBurst_Sms_Unheld>
                 </observers>
             </sales_order_save_after>
             <sales_order_shipment_save_after>
                 <observers>
-                    <MediaBurst_Sms>
+                    <MediaBurst_Sms_Shipped>
                         <class>MediaBurst_Sms/Observer</class>
                         <method>createOrderShippedMessage</method>
-                    </MediaBurst_Sms>
+                    </MediaBurst_Sms_Shipped>
                 </observers>
             </sales_order_shipment_save_after>
             <checkout_type_onepage_save_order_after>
                 <observers>
-                    <MediaBurst_Sms>
+                    <MediaBurst_Sms_Created>
                         <class>MediaBurst_Sms/Observer</class>
                         <method>createOrderCreatedMessage</method>
-                    </MediaBurst_Sms>
+                    </MediaBurst_Sms_Created>
                 </observers>
             </checkout_type_onepage_save_order_after>
         </events>
@@ -68,7 +72,7 @@
         <layout>
             <updates>
                 <MediaBurst_Sms>
-                    <file>MediaBurst_Sms.xml</file>
+                    <file>mediaburst/sms.xml</file>
                 </MediaBurst_Sms>
             </updates>
         </layout>
@@ -96,22 +100,27 @@
                 <schedule>*/10 * * * *</schedule>
                 <debug>0</debug>
             </general>
-            <new_order>
+            <order_created>
                 <active></active>
                 <from></from>
                 <to></to>
                 <content>Order {{var order.increment_id}} placed for {{var order.base_grand_total}}</content>
-            </new_order>
-            <order_shipped>
-                <active>0</active>
-                <from></from>
-                <content>{{var order.getCustomerName()}}, your order {{var order.increment_id}} has shipped. Shipment {{var shipment.increment_id}}</content>
-            </order_shipped>
+            </order_created>
             <order_held>
                 <active>0</active>
                 <from></from>
                 <content>{{var order.getCustomerName()}}, your order {{var order.increment_id}} has been placed on hold.</content>
             </order_held>
+            <order_unheld>
+                <active>0</active>
+                <from></from>
+                <content>{{var order.getCustomerName()}}, your order {{var order.increment_id}} has been released from hold.</content>
+            </order_unheld>
+            <order_shipped>
+                <active>0</active>
+                <from></from>
+                <content>{{var order.getCustomerName()}}, your order {{var order.increment_id}} has shipped. Shipment {{var shipment.increment_id}}</content>
+            </order_shipped>
         </mediaburst_sms>
     </default>
     <crontab>
