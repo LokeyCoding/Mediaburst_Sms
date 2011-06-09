@@ -44,21 +44,24 @@
                             <frontend_type>text</frontend_type>
                             <sort_order>40</sort_order>
                             <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
                         </send_url>
                         <check_url translate="label">
                             <label>Check Credits URL</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>50</sort_order>
                             <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
                         </check_url>
+                        <buy_url translate="label">
+                            <label>Buy Credits URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                        </buy_url>
                         <schedule translate="label">
                             <label>Sending Cron Schedule</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>100</sort_order>
                             <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
                         </schedule>
                         <debug translate="label">
                             <label>Debug</label>

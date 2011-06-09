@@ -10,7 +10,7 @@
 /**
  * Abstract Message Grid
  */
-abstract class MediaBurst_Sms_Block_AbstractGrid extends Mage_Adminhtml_Block_Widget_Grid
+abstract class MediaBurst_Sms_Block_AbstractMessageGrid extends Mage_Adminhtml_Block_Widget_Grid
 {
 
     protected $_resourceClass = null;

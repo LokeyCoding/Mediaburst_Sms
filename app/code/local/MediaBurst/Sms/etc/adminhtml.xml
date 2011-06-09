@@ -22,6 +22,11 @@
                             <action>adminhtml/mediaBurst_sms/failed</action>
                             <sort_order>300</sort_order>
                         </failed>
+                        <check translate="title">
+                            <title>View/Buy Credits</title>
+                            <action>adminhtml/mediaBurst_sms/check</action>
+                            <sort_order>400</sort_order>
+                        </check>
                     </children>
                 </mediaburst_sms>
             </children>

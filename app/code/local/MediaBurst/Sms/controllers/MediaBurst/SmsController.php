@@ -20,47 +20,10 @@ class MediaBurst_Sms_MediaBurst_SmsController extends Mage_Adminhtml_Controller_
 
     public function checkAction()
     {
-        $helper = Mage::helper('MediaBurst_Sms/Data');
-
-        $runs = array();
-
-        $stores = Mage::app()->getStores();
-        foreach ($stores as $store) {
-            if ($helper->isActive($store)) {
-                $username = $helper->getUsername($store);
-                $password = $helper->getPassword($store);
-                $url = $helper->getCheckUrl($store);
-                $hash = md5($username . ':' . $password . ':' . $url);
-
-                if (!isset($runs[$hash])) {
-                    $runs[$hash] = array(
-                        'username' => $username,
-                        'url' => $url,
-                        'stores' => array()
-                    );
-                }
-
-                $runs[$hash]['stores'][] = $store->getId();
-            }
-        }
-
-        $api = Mage::getModel('MediaBurst_Sms/Api', $helper);
-        /* @var $api MediaBurst_Sms_Model_Api */
-
-        $results = array();
-
-        foreach ($runs as $hash => $run) {
-            $helper->setDefaultStore(reset($run['stores']));
-            $run['credits'] = $api->checkCredits();
-            $results[$hash] = $run;
-        }
-
-        Zend_Debug::dump($results);
-    }
-
-    public function buyAction()
-    {
-        //TODO: Bounce to buy credits page
+        $this->loadLayout();
+        $this->_setActiveMenu('sales/mediaburst_sms/check');
+        $this->_addBreadcrumb($this->__('Sales'), $this->__('Sales'));
+        $this->renderLayout();
     }
 
     public function pendingAction()
@@ -179,10 +142,10 @@ class MediaBurst_Sms_MediaBurst_SmsController extends Mage_Adminhtml_Controller_
             case 'requeue':
             case 'failed':
             case 'retry':
+            case 'check':
                 $allowed = $this->_permissionCheck($action);
                 break;
             case 'index':
-            case 'check':
             case 'forceCron':
                 $allowed = true;
                 break;

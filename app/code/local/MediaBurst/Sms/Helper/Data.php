@@ -39,6 +39,15 @@ class MediaBurst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements Me
         return Mage::getStoreConfig(self::XML_CONFIG_BASE_PATH . 'general/check_url', $store);
     }
 
+    public function getBuyUrl($store = null)
+    {
+        if ($store === null) {
+            $store = $this->_defaultStore;
+        }
+
+        return Mage::getStoreConfig(self::XML_CONFIG_BASE_PATH . 'general/buy_url', $store);
+    }
+
     public function getSendUrl($store = null)
     {
         if ($store === null) {

@@ -10,7 +10,7 @@
 /**
  * Failed Message Grid
  */
-class MediaBurst_Sms_Block_FailedGrid extends MediaBurst_Sms_Block_AbstractGrid
+class MediaBurst_Sms_Block_FailedGrid extends MediaBurst_Sms_Block_AbstractMessageGrid
 {
 
     protected function _filterCollection(Varien_Data_Collection_Db $collection)

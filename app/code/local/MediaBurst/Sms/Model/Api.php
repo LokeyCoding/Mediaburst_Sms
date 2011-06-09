@@ -158,7 +158,7 @@ class MediaBurst_Sms_Model_Api extends Zend_Service_Abstract
             }
         }
 
-        $messageNodes = $xpath->query('//Message_Resp');
+        $messageNodes = $xpath->query('//Message_Resp[ErrNo]');
         foreach ($messageNodes as $messageNode) {
             $errorNumber = $xpath->evaluate('string(./ErrNo)', $messageNode);
             $errorDescription = $xpath->evaluate('string(./ErrDesc)', $messageNode);
