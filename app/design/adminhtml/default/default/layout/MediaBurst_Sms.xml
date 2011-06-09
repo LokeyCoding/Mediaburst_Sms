@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_mediaburst_sms_pending>
+        <reference name="content">
+            <block type="MediaBurst_Sms/GridContainer" name="mediaburst_sms.gridcontainer">
+                <action method="setHeaderText">
+                    <param>Pending SMS Messages</param>
+                </action>
+                <action method="removeButton">
+                    <param>add</param>
+                </action>
+                <block type="MediaBurst_Sms/PendingGrid" name="mediaburst_sms.grid" as="grid">
+                    <action method="setCollectionResourceModel">
+                        <param>MediaBurst_Sms/Message_Collection</param>
+                    </action>
+                    <action method="setDefaultDir">
+                        <param>DESC</param>
+                    </action>
+                </block>
+            </block>
+        </reference>
+    </adminhtml_mediaburst_sms_pending>
+    <adminhtml_mediaburst_sms_sent>
+        <reference name="content">
+            <block type="MediaBurst_Sms/GridContainer" name="mediaburst_sms.gridcontainer">
+                <action method="setHeaderText">
+                    <param>Sent SMS Messages</param>
+                </action>
+                <action method="removeButton">
+                    <param>add</param>
+                </action>
+                <block type="MediaBurst_Sms/SentGrid" name="mediaburst_sms.grid" as="grid">
+                    <action method="setCollectionResourceModel">
+                        <param>MediaBurst_Sms/Message_Collection</param>
+                    </action>
+                    <action method="setDefaultDir">
+                        <param>DESC</param>
+                    </action>
+                </block>
+            </block>
+        </reference>
+    </adminhtml_mediaburst_sms_sent>
+    <adminhtml_mediaburst_sms_failed>
+        <reference name="content">
+            <block type="MediaBurst_Sms/GridContainer" name="mediaburst_sms.gridcontainer">
+                <action method="setHeaderText">
+                    <param>Failed SMS Messages</param>
+                </action>
+                <action method="removeButton">
+                    <param>add</param>
+                </action>
+                <block type="MediaBurst_Sms/FailedGrid" name="mediaburst_sms.grid" as="grid">
+                    <action method="setCollectionResourceModel">
+                        <param>MediaBurst_Sms/Message_Collection</param>
+                    </action>
+                    <action method="setDefaultDir">
+                        <param>DESC</param>
+                    </action>
+                </block>
+            </block>
+        </reference>
+    </adminhtml_mediaburst_sms_failed>
+</layout>
