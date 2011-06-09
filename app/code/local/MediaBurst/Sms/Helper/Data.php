@@ -242,6 +242,15 @@ class MediaBurst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements Me
         return $filter->filter($this->getOrderHeldContent($order->getStoreId()));
     }
 
+    public function generateOrderUnheldContent(Mage_Sales_Model_Order $order)
+    {
+        $filter = Mage::getModel('core/email_template_filter');
+        $filter->setPlainTemplateMode(true);
+        $filter->setStoreId($order->getStoreId());
+        $filter->setVariables(array('order' => $order));
+        return $filter->filter($this->getOrderUnheldContent($order->getStoreId()));
+    }
+
     /**
      * Convert a result array into a series of session messages
      *
