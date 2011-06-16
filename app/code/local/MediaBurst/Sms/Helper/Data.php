@@ -302,7 +302,7 @@ class MediaBurst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements Me
             if (!empty($expectedPrefix)) {
                 $prefix = substr($number, 0, strlen($expectedPrefix));
                 if ($prefix !== $expectedPrefix) {
-                    $number = $expectedPrefix . substr($number, strlen($expectedPrefix));
+                    $number = $expectedPrefix . $number;
                 }
             }
         }
