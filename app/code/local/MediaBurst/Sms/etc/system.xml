@@ -57,6 +57,13 @@
                             <sort_order>60</sort_order>
                             <show_in_default>1</show_in_default>
                         </buy_url>
+                        <failsafe_prefix translate="label">
+                            <label>Failsafe Country Prefix</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </failsafe_prefix>
                         <schedule translate="label">
                             <label>Sending Cron Schedule</label>
                             <frontend_type>text</frontend_type>

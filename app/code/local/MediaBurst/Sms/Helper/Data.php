@@ -281,4 +281,33 @@ class MediaBurst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements Me
         return $this;
     }
 
+    public function getTelephone(Mage_Sales_Model_Order $order)
+    {
+        $billingAddress = $order->getBillingAddress();
+
+        $number = $billingAddress->getTelephone();
+        $number = preg_replace('#[^\+\d]#', '', trim($number));
+
+        if (substr($number, 0, 1) === '+') {
+            $number = substr($number, 1);
+        } elseif (substr($number, 0, 2) === '00') {
+            $number = substr($number, 2);
+        } else {
+            $expectedPrefix = Zend_Locale_Data::getContent(Mage::app()->getLocale()->getLocale(), 'phonetoterritory', $billingAddress->getCountry());
+
+            if (empty($expectedPrefix)) {
+                $expectedPrefix = Mage::getStoreConfig(self::XML_CONFIG_BASE_PATH . 'general/failsafe_prefix', $store);
+            }
+
+            if (!empty($expectedPrefix)) {
+                $prefix = substr($number, 0, strlen($expectedPrefix));
+                if ($prefix !== $expectedPrefix) {
+                    $number = $expectedPrefix . substr($number, strlen($expectedPrefix));
+                }
+            }
+        }
+
+        return preg_replace('#[^\d]#', '', trim($number));
+    }
+
 }

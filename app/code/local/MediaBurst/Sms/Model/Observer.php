@@ -46,7 +46,7 @@ class MediaBurst_Sms_Model_Observer
             try {
                 $message = Mage::getModel('MediaBurst_Sms/Message');
                 $message->setStoreId($order->getStoreId());
-                $message->setTo($order->getBillingAddress()->getTelephone());
+                $message->setTo($this->getHelper()->getTelephone($order));
                 $message->setFrom($this->getHelper()->getOrderShippedFrom());
                 $message->setContent($this->getHelper()->generateOrderShippedContent($order, $shipment));
                 $message->save();
@@ -68,7 +68,7 @@ class MediaBurst_Sms_Model_Observer
                 try {
                     $message = Mage::getModel('MediaBurst_Sms/Message');
                     $message->setStoreId($order->getStoreId());
-                    $message->setTo($order->getBillingAddress()->getTelephone());
+                    $message->setTo($this->getHelper()->getTelephone($order));
                     $message->setFrom($this->getHelper()->getOrderHeldFrom());
                     $message->setContent($this->getHelper()->generateOrderHeldContent($order));
                     $message->save();
@@ -91,7 +91,7 @@ class MediaBurst_Sms_Model_Observer
                 try {
                     $message = Mage::getModel('MediaBurst_Sms/Message');
                     $message->setStoreId($order->getStoreId());
-                    $message->setTo($order->getBillingAddress()->getTelephone());
+                    $message->setTo($this->getHelper()->getTelephone($order));
                     $message->setFrom($this->getHelper()->getOrderUnheldFrom());
                     $message->setContent($this->getHelper()->generateOrderUnheldContent($order));
                     $message->save();
