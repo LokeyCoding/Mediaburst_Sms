@@ -121,7 +121,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment>Template for 180 character SMS message.</comment>
+                            <comment>Template for 160 character SMS message.</comment>
                         </content>
                     </fields>
                 </order_created>
@@ -157,7 +157,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment>Template for 180 character SMS message.</comment>
+                            <comment>Template for 160 character SMS message.</comment>
                         </content>
                     </fields>
                 </order_held>
@@ -193,7 +193,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment>Template for 180 character SMS message.</comment>
+                            <comment>Template for 160 character SMS message.</comment>
                         </content>
                     </fields>
                 </order_unheld>
@@ -229,7 +229,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment>Template for 180 character SMS message.</comment>
+                            <comment>Template for 160 character SMS message.</comment>
                         </content>
                     </fields>
                 </order_shipped>

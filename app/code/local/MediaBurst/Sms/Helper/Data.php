@@ -293,12 +293,20 @@ class MediaBurst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements Me
         } elseif (substr($number, 0, 2) === '00') {
             $number = substr($number, 2);
         } else {
+            // Handle special case where mobile numbers are prefixed with a 0
+            if (substr($number, 0, 1) === '0') {
+                $number = substr($number, 1);
+            }
+
+            // Find the telephone dialing code for the billing country
             $expectedPrefix = Zend_Locale_Data::getContent(Mage::app()->getLocale()->getLocale(), 'phonetoterritory', $billingAddress->getCountry());
 
+            // If we couldn't find the dialing code by billing country, chose the store level default
             if (empty($expectedPrefix)) {
                 $expectedPrefix = Mage::getStoreConfig(self::XML_CONFIG_BASE_PATH . 'general/failsafe_prefix', $store);
             }
 
+            // Try to prepend the dialing prefix if it's not part of the number already (Not bullet-proof)
             if (!empty($expectedPrefix)) {
                 $prefix = substr($number, 0, strlen($expectedPrefix));
                 if ($prefix !== $expectedPrefix) {
@@ -307,7 +315,28 @@ class MediaBurst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements Me
             }
         }
 
-        return preg_replace('#[^\d]#', '', trim($number));
+        // Final trim of number, Just-In-Case™
+        $number = preg_replace('#[^\d]#', '', trim($number));
+
+        return $number;
+    }
+
+    /**
+     *
+     * @param Mage_Sales_Model_Order $order
+     * @param string $comment
+     * @return MediaBurst_Sms_Helper_Data
+     */
+    public function addOrderComment(Mage_Sales_Model_Order $order, $comment)
+    {
+        Mage::getModel('sales/order_status_history')
+            ->setOrder($order)
+            ->setStatus($order->getStatus())
+            ->setComment($comment)
+            ->setIsCustomerNotified(true)
+            ->save();
+
+        return $this;
     }
 
 }

@@ -60,6 +60,18 @@ abstract class MediaBurst_Sms_Block_AbstractMessageGrid extends Mage_Adminhtml_B
             'display_deleted' => true,
         ));
 
+        $this->addColumn('created_at', array(
+            'header'    => $this->__('Created'),
+            'index'     => 'created_at',
+            'type'      => 'datetime',
+        ));
+
+        $this->addColumn('updated_at', array(
+            'header'    => $this->__('Updated'),
+            'index'     => 'updated_at',
+            'type'      => 'datetime',
+        ));
+
         $this->addColumn('to', array(
             'header' => $this->__('To'),
             'index' => 'to',

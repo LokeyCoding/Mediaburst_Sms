@@ -28,8 +28,8 @@ $this->run("
 
 $this->run("
     ALTER TABLE `{$this->getTable('MediaBurst_Sms/Message')}`
-      ADD KEY `FK_MESSAGE_STORE` (`store_id`),
-      ADD CONSTRAINT `FK_MESSAGE_STORE` FOREIGN KEY (`store_id`) REFERENCES `{$this->getTable('core/store')}` (`store_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+        ADD KEY `FK_MESSAGE_STORE` (`store_id`),
+        ADD CONSTRAINT `FK_MESSAGE_STORE` FOREIGN KEY (`store_id`) REFERENCES `{$this->getTable('core/store')}` (`store_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ");
 
 $this->endSetup();

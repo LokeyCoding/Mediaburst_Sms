@@ -50,6 +50,7 @@ class MediaBurst_Sms_Model_Observer
                 $message->setFrom($this->getHelper()->getOrderShippedFrom());
                 $message->setContent($this->getHelper()->generateOrderShippedContent($order, $shipment));
                 $message->save();
+                $this->getHelper()->addOrderComment($order, 'SMS message generated (' . $message->getId() . ')');
             } catch (Exception $e) {
                 $this->getHelper()->log('Error creating Order Shipped SMS Message Record for Order ' . $order->getIncrementId(), Zend_Log::ERR);
             }
@@ -72,6 +73,7 @@ class MediaBurst_Sms_Model_Observer
                     $message->setFrom($this->getHelper()->getOrderHeldFrom());
                     $message->setContent($this->getHelper()->generateOrderHeldContent($order));
                     $message->save();
+                    $this->getHelper()->addOrderComment($order, 'SMS message generated (' . $message->getId() . ')');
                 } catch (Exception $e) {
                     $this->getHelper()->log('Error creating Order Held SMS Message Record for Order ' . $order->getIncrementId(), Zend_Log::ERR);
                 }
@@ -95,6 +97,7 @@ class MediaBurst_Sms_Model_Observer
                     $message->setFrom($this->getHelper()->getOrderUnheldFrom());
                     $message->setContent($this->getHelper()->generateOrderUnheldContent($order));
                     $message->save();
+                    $this->getHelper()->addOrderComment($order, 'SMS message generated (' . $message->getId() . ')');
                 } catch (Exception $e) {
                     $this->getHelper()->log('Error creating Order Held SMS Message Record for Order ' . $order->getIncrementId(), Zend_Log::ERR);
                 }
