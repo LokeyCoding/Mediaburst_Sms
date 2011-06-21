@@ -79,7 +79,7 @@ class MediaBurst_Sms_Model_Message extends Mage_Core_Model_Abstract
             if (empty($date)) {
                 $date = new Zend_Date();
             } else {
-                $date = new Zend_Date(now(), Zend_Date::TIMESTAMP);
+                $date = new Zend_Date(strtotime($date), Zend_Date::TIMESTAMP);
             }
         }
 
