@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <modules>
-        <MediaBurst_Sms>
+        <Mediaburst_Sms>
             <active>true</active>
-            <codePool>local</codePool>
+            <codePool>community</codePool>
             <depends>
                 <Mage_Core />
                 <Mage_Adminhtml />
                 <Mage_Sales />
                 <Mage_Checkout />
             </depends>
-        </MediaBurst_Sms>
+        </Mediaburst_Sms>
     </modules>
 </config>
