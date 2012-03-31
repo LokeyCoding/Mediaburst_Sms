@@ -3,7 +3,7 @@
     <adminhtml_mediaburst_sms_pending>
         <reference name="content">
             <block type="Mediaburst_Sms/GridContainer" name="mediaburst_sms.gridcontainer">
-                <action method="setHeaderText">
+                <action method="setHeaderText" translate="param">
                     <param>Pending SMS Messages</param>
                 </action>
                 <action method="removeButton">
@@ -23,7 +23,7 @@
     <adminhtml_mediaburst_sms_sent>
         <reference name="content">
             <block type="Mediaburst_Sms/GridContainer" name="mediaburst_sms.gridcontainer">
-                <action method="setHeaderText">
+                <action method="setHeaderText" translate="param">
                     <param>Sent SMS Messages</param>
                 </action>
                 <action method="removeButton">
@@ -43,7 +43,7 @@
     <adminhtml_mediaburst_sms_failed>
         <reference name="content">
             <block type="Mediaburst_Sms/GridContainer" name="mediaburst_sms.gridcontainer">
-                <action method="setHeaderText">
+                <action method="setHeaderText" translate="param">
                     <param>Failed SMS Messages</param>
                 </action>
                 <action method="removeButton">
@@ -63,7 +63,7 @@
     <adminhtml_mediaburst_sms_check>
         <reference name="content">
             <block type="Mediaburst_Sms/GridContainer" name="mediaburst_sms.gridcontainer">
-                <action method="setHeaderText">
+                <action method="setHeaderText" translate="param">
                     <param>Remaining Credits</param>
                 </action>
                 <action method="removeButton">
