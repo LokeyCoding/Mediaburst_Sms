@@ -102,7 +102,7 @@ class Mediaburst_Sms_Mediaburst_SmsController extends Mage_Adminhtml_Controller_
                     $message->save();
                     $this->_getSession()->addSuccess($this->__('Requeued message %s to %s', $message->getId(), $message->getTo()));
                 } catch (Exception $e) {
-                    $this->_getSession()->addException($e);
+                    $this->_getSession()->addException($e, $e->getMessage());
                 }
             } else {
                 $this->_getSession()->addError($this->__('Invalid Message Status'));
@@ -128,7 +128,7 @@ class Mediaburst_Sms_Mediaburst_SmsController extends Mage_Adminhtml_Controller_
                     $message->save();
                     $this->_getSession()->addSuccess($this->__('Retrying message %s to %s', $message->getId(), $message->getTo()));
                 } catch (Exception $e) {
-                    $this->_getSession()->addException($e);
+                    $this->_getSession()->addException($e, $e->getMessage());
                 }
             } else {
                 $this->_getSession()->addError($this->__('Invalid Message Status'));
