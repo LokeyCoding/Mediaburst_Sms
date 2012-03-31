@@ -52,14 +52,14 @@ class Mediaburst_Sms_Block_CreditReportGrid extends Mage_Adminhtml_Block_Widget_
             if ($helper->isActive($store)) {
                 $username = $helper->getUsername($store);
                 $password = $helper->getPassword($store);
-                $url = $helper->getCheckUrl($store);
-                $hash = md5($username . ':' . $password . ':' . $url);
+                $url      = $helper->getCheckUrl($store);
+                $hash     = md5($username . ':' . $password . ':' . $url);
 
                 if (!isset($runs[$hash])) {
                     $runs[$hash] = array(
                         'username' => $username,
-                        'url' => $url,
-                        'stores' => array()
+                        'url'      => $url,
+                        'stores'   => array()
                     );
                 }
 
@@ -90,23 +90,32 @@ class Mediaburst_Sms_Block_CreditReportGrid extends Mage_Adminhtml_Block_Widget_
 
     protected function _prepareColumns()
     {
-        $this->addColumn('username', array(
-            'header' => $this->__('Username'),
-            'index' => 'username',
-            'filter' => false,
-        ));
+        $this->addColumn(
+            'username',
+            array(
+                 'header' => $this->__('Username'),
+                 'index'  => 'username',
+                 'filter' => false,
+            )
+        );
 
-        $this->addColumn('url', array(
-            'header' => $this->__('Service URL'),
-            'index' => 'url',
-            'filter' => false,
-        ));
+        $this->addColumn(
+            'url',
+            array(
+                 'header' => $this->__('Service URL'),
+                 'index'  => 'url',
+                 'filter' => false,
+            )
+        );
 
-        $this->addColumn('credits', array(
-            'header' => $this->__('Credits'),
-            'index' => 'credits',
-            'filter' => false,
-        ));
+        $this->addColumn(
+            'credits',
+            array(
+                 'header' => $this->__('Credits'),
+                 'index'  => 'credits',
+                 'filter' => false,
+            )
+        );
 
         return parent::_prepareColumns();
     }
@@ -116,12 +125,14 @@ class Mediaburst_Sms_Block_CreditReportGrid extends Mage_Adminhtml_Block_Widget_
         $container = $this->getParentBlock();
         if ($container instanceof Mage_Adminhtml_Block_Widget_Grid_Container) {
             $helper = Mage::helper('Mediaburst_Sms/Data');
-            $container->addButton('buy', array(
-                'label' => $this->__('Buy'),
-                'onclick' => 'setLocation(\'' . $helper->getBuyUrl(0) . '\')',
-                'class' => 'add',
-            ));
+            $container->addButton(
+                'buy',
+                array(
+                     'label'   => $this->__('Buy'),
+                     'onclick' => 'setLocation(\'' . $helper->getBuyUrl(0) . '\')',
+                     'class'   => 'add',
+                )
+            );
         }
     }
-
 }

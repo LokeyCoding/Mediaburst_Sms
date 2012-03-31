@@ -70,7 +70,7 @@
                     <param>add</param>
                 </action>
                 <block type="Mediaburst_Sms/CreditReportGrid" name="mediaburst_sms.grid" as="grid">
-                    <action method="registerBuyButton" />
+                    <action method="registerBuyButton"/>
                 </block>
             </block>
         </reference>

@@ -75,11 +75,16 @@ class Mediaburst_Sms_Model_Api extends Zend_Service_Abstract
             throw new Mediaburst_Sms_Exception('Too many messages. Limit is ' . self::SMS_PER_REQUEST_LIMIT . ' per request');
         }
 
-        $result = array('pending' => array(), 'sent' => array(), 'failed' => array(), 'errors' => array());
+        $result = array(
+            'pending' => array(),
+            'sent'    => array(),
+            'failed'  => array(),
+            'errors'  => array()
+        );
 
         $indexedMessages = array();
 
-        $xml = new DOMDocument('1.0', 'UTF-8');
+        $xml  = new DOMDocument('1.0', 'UTF-8');
         $root = $xml->appendChild($xml->createElement('Message'));
         $root->appendChild($xml->createElement('Username', $this->_config->getUsername()));
         $root->appendChild($xml->createElement('Password', $this->_config->getPassword()));
@@ -142,9 +147,9 @@ class Mediaburst_Sms_Model_Api extends Zend_Service_Abstract
             $message = $result['pending'][$clientId];
             unset($result['pending'][$clientId]);
 
-            $to = $xpath->evaluate('string(./To)', $responseNode);
-            $messageId = $xpath->evaluate('string(./MessageID)', $responseNode);
-            $errorNumber = $xpath->evaluate('string(./ErrNo)', $responseNode);
+            $to               = $xpath->evaluate('string(./To)', $responseNode);
+            $messageId        = $xpath->evaluate('string(./MessageID)', $responseNode);
+            $errorNumber      = $xpath->evaluate('string(./ErrNo)', $responseNode);
             $errorDescription = $xpath->evaluate('string(./ErrDesc)', $responseNode);
 
             if (!empty($errorNumber)) {
@@ -155,7 +160,8 @@ class Mediaburst_Sms_Model_Api extends Zend_Service_Abstract
                     $message->setStatus(Mediaburst_Sms_Model_Message::STATUS_FAILED);
                     $message->save();
                     $result['failed'][$clientId] = $message;
-                } catch (Exception $e) {
+                }
+                catch (Exception $e) {
                     $result['errors'][] = array($e->getMessage(), $to, $errorNumber, $errorDescription);
                 }
             } elseif (!empty($messageId)) {
@@ -166,7 +172,8 @@ class Mediaburst_Sms_Model_Api extends Zend_Service_Abstract
                     $message->setStatus(Mediaburst_Sms_Model_Message::STATUS_SENT);
                     $message->save();
                     $result['sent'][$clientId] = $message;
-                } catch (Exception $e) {
+                }
+                catch (Exception $e) {
                     $result['errors'][] = array($e->getMessage(), $to, $messageId);
                 }
             } else {
@@ -176,8 +183,8 @@ class Mediaburst_Sms_Model_Api extends Zend_Service_Abstract
 
         $messageNodes = $xpath->query('//Message_Resp[ErrNo]');
         foreach ($messageNodes as $messageNode) {
-            $errorNumber = $xpath->evaluate('string(./ErrNo)', $messageNode);
-            $errorDescription = $xpath->evaluate('string(./ErrDesc)', $messageNode);
+            $errorNumber        = $xpath->evaluate('string(./ErrNo)', $messageNode);
+            $errorDescription   = $xpath->evaluate('string(./ErrDesc)', $messageNode);
             $result['errors'][] = array($errorNumber, $errorDescription);
         }
 
@@ -217,5 +224,4 @@ class Mediaburst_Sms_Model_Api extends Zend_Service_Abstract
     {
         return preg_replace('#[^\d]#', '', trim($number));
     }
-
 }

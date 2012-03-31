@@ -33,5 +33,4 @@ class Mediaburst_Sms_Model_Mysql4_Message extends Mage_Core_Model_Mysql4_Abstrac
     {
         $this->_init('Mediaburst_Sms/Message', 'id');
     }
-
 }

@@ -5,10 +5,10 @@
             <active>true</active>
             <codePool>community</codePool>
             <depends>
-                <Mage_Core />
-                <Mage_Adminhtml />
-                <Mage_Sales />
-                <Mage_Checkout />
+                <Mage_Core/>
+                <Mage_Adminhtml/>
+                <Mage_Sales/>
+                <Mage_Checkout/>
             </depends>
         </Mediaburst_Sms>
     </modules>

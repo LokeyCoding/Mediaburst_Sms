@@ -61,50 +61,70 @@ abstract class Mediaburst_Sms_Block_AbstractMessageGrid extends Mage_Adminhtml_B
 
     protected function _prepareColumns()
     {
-        $this->addColumn('id', array(
-            'header' => $this->__('Message #'),
-            'width' => '80px',
-            'type' => 'number',
-            'index' => 'id',
-        ));
+        $this->addColumn(
+            'id',
+            array(
+                 'header' => $this->__('Message #'),
+                 'width'  => '80px',
+                 'type'   => 'number',
+                 'index'  => 'id',
+            )
+        );
 
-        $this->addColumn('store_id', array(
-            'header' => $this->__('Store'),
-            'index' => 'store_id',
-            'type' => 'store',
-            'store_view' => true,
-            'display_deleted' => true,
-        ));
+        $this->addColumn(
+            'store_id',
+            array(
+                 'header'          => $this->__('Store'),
+                 'index'           => 'store_id',
+                 'type'            => 'store',
+                 'store_view'      => true,
+                 'display_deleted' => true,
+            )
+        );
 
-        $this->addColumn('created_at', array(
-            'header'    => $this->__('Created'),
-            'index'     => 'created_at',
-            'type'      => 'datetime',
-        ));
+        $this->addColumn(
+            'created_at',
+            array(
+                 'header' => $this->__('Created'),
+                 'index'  => 'created_at',
+                 'type'   => 'datetime',
+            )
+        );
 
-        $this->addColumn('updated_at', array(
-            'header'    => $this->__('Updated'),
-            'index'     => 'updated_at',
-            'type'      => 'datetime',
-        ));
+        $this->addColumn(
+            'updated_at',
+            array(
+                 'header' => $this->__('Updated'),
+                 'index'  => 'updated_at',
+                 'type'   => 'datetime',
+            )
+        );
 
-        $this->addColumn('to', array(
-            'header' => $this->__('To'),
-            'index' => 'to',
-        ));
+        $this->addColumn(
+            'to',
+            array(
+                 'header' => $this->__('To'),
+                 'index'  => 'to',
+            )
+        );
 
-        $this->addColumn('from', array(
-            'header' => $this->__('From'),
-            'index' => 'from',
-        ));
+        $this->addColumn(
+            'from',
+            array(
+                 'header' => $this->__('From'),
+                 'index'  => 'from',
+            )
+        );
 
-        $this->addColumn('content', array(
-            'header' => $this->__('Content'),
-            'index' => 'content',
-            'filter' => false,
-        ));
+        $this->addColumn(
+            'content',
+            array(
+                 'header' => $this->__('Content'),
+                 'index'  => 'content',
+                 'filter' => false,
+            )
+        );
 
         return parent::_prepareColumns();
     }
-
 }

@@ -108,8 +108,8 @@ class Mediaburst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements Me
 
         if ($message instanceof Exception) {
             $message = "\n" . $message->__toString();
-            $level = Zend_Log::ERR;
-            $file = Mage::getStoreConfig('dev/log/exception_file', $store);
+            $level   = Zend_Log::ERR;
+            $file    = Mage::getStoreConfig('dev/log/exception_file', $store);
         } else {
             if (is_array($message) || is_object($message)) {
                 $message = print_r($message, true);
@@ -254,7 +254,12 @@ class Mediaburst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements Me
         $filter = Mage::getModel('core/email_template_filter');
         $filter->setPlainTemplateMode(true);
         $filter->setStoreId($order->getStoreId());
-        $filter->setVariables(array('order' => $order, 'shipment' => $shipment));
+        $filter->setVariables(
+            array(
+                 'order'    => $order,
+                 'shipment' => $shipment
+            )
+        );
         return $filter->filter($this->getOrderShippedContent($order->getStoreId()));
     }
 
@@ -280,6 +285,7 @@ class Mediaburst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements Me
      * Convert a result array into a series of session messages
      *
      * @param Mage_Core_Model_Session_Abstract $session
+     *
      * @return Mediaburst_Sms_Helper_Data
      */
     public function reportResults(Mage_Core_Model_Session_Abstract $session, array $result)
@@ -340,7 +346,8 @@ class Mediaburst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements Me
     /**
      *
      * @param Mage_Sales_Model_Order $order
-     * @param string $comment
+     * @param string                 $comment
+     *
      * @return Mediaburst_Sms_Helper_Data
      */
     public function addOrderComment(Mage_Sales_Model_Order $order, $comment)
@@ -354,5 +361,4 @@ class Mediaburst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements Me
 
         return $this;
     }
-
 }

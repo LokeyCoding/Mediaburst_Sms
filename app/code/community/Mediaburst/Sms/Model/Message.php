@@ -28,9 +28,9 @@
  */
 class Mediaburst_Sms_Model_Message extends Mage_Core_Model_Abstract
 {
-    const STATUS_PENDING = 0;
-    const STATUS_SENT = 1;
-    const STATUS_FAILED = 2;
+    const STATUS_PENDING  = 0;
+    const STATUS_SENT     = 1;
+    const STATUS_FAILED   = 2;
     const DATETIME_FORMAT = 'yyyy-MM-dd HH:mm:ss';
 
     protected function _construct()
@@ -87,6 +87,7 @@ class Mediaburst_Sms_Model_Message extends Mage_Core_Model_Abstract
      * Convert a date string or object into a MySQL formatted date-time string
      *
      * @param Zend_Date|string|null $date
+     *
      * @return string
      */
     protected function _toDbDate($date = null)
@@ -106,6 +107,7 @@ class Mediaburst_Sms_Model_Message extends Mage_Core_Model_Abstract
      * Convert a MySQL Formatted DateTime string into a Zend_Date object
      *
      * @param string $date
+     *
      * @return Zend_Date
      */
     protected function _fromDbDate($date)
@@ -122,5 +124,4 @@ class Mediaburst_Sms_Model_Message extends Mage_Core_Model_Abstract
 
         return $date;
     }
-
 }

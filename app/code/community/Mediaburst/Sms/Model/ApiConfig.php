@@ -66,7 +66,7 @@ interface Mediaburst_Sms_Model_ApiConfig
      * Log a message
      *
      * @param mixed $message
-     * @param int $level
+     * @param int   $level
      * @param mixed $store
      */
     public function log($message, $level = Zend_Log::DEBUG, $store = null);

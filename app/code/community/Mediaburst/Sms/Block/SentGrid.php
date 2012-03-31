@@ -37,32 +37,39 @@ class Mediaburst_Sms_Block_SentGrid extends Mediaburst_Sms_Block_AbstractMessage
 
     protected function _prepareColumns()
     {
-        $this->addColumnAfter('message_id', array(
-            'header' => $this->__('MessageID'),
-            'index' => 'message_id',
-            'filter' => false,
-            ), 'content');
+        $this->addColumnAfter(
+            'message_id',
+            array(
+                 'header' => $this->__('MessageID'),
+                 'index'  => 'message_id',
+                 'filter' => false,
+            ),
+            'content'
+        );
 
         if (Mage::getSingleton('admin/session')->isAllowed('sales/mediaburst_sms/requeue')) {
-            $this->addColumnAfter('action', array(
-                'header' => $this->__('Action'),
-                'width' => '50px',
-                'type' => 'action',
-                'getter' => 'getId',
-                'actions' => array(
-                    array(
-                        'caption' => $this->__('Requeue'),
-                        'url' => array('base' => '*/*/requeue'),
-                        'field' => 'id'
-                    )
+            $this->addColumnAfter(
+                'action',
+                array(
+                     'header'    => $this->__('Action'),
+                     'width'     => '50px',
+                     'type'      => 'action',
+                     'getter'    => 'getId',
+                     'filter'    => false,
+                     'sortable'  => false,
+                     'is_system' => true,
+                     'actions'   => array(
+                         array(
+                             'caption' => $this->__('Requeue'),
+                             'url'     => array('base' => '*/*/requeue'),
+                             'field'   => 'id'
+                         )
+                     )
                 ),
-                'filter' => false,
-                'sortable' => false,
-                'is_system' => true,
-                ), 'message_id');
+                'message_id'
+            );
         }
 
         return parent::_prepareColumns();
     }
-
 }

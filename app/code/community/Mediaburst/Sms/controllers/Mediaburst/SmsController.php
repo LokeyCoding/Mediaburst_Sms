@@ -68,13 +68,13 @@ class Mediaburst_Sms_Mediaburst_SmsController extends Mage_Adminhtml_Controller_
 
     public function sendAction()
     {
-        $id = (int) $this->getRequest()->getParam('id');
+        $id      = (int)$this->getRequest()->getParam('id');
         $message = Mage::getModel('Mediaburst_Sms/Message')->load($id);
         if ($message->getId() > 0 && $message->getId() == $id) {
             if ($message->getStatus() == Mediaburst_Sms_Model_Message::STATUS_PENDING) {
                 $helper = Mage::helper('Mediaburst_Sms/Data');
                 $helper->setDefaultStore($message->getStoreId());
-                $api = Mage::getModel('Mediaburst_Sms/Api', $helper);
+                $api    = Mage::getModel('Mediaburst_Sms/Api', $helper);
                 $result = $api->sendMessage($message);
                 $helper->setDefaultStore(null);
                 $helper->reportResults($this->_getSession(), $result);
@@ -90,7 +90,7 @@ class Mediaburst_Sms_Mediaburst_SmsController extends Mage_Adminhtml_Controller_
 
     public function requeueAction()
     {
-        $id = (int) $this->getRequest()->getParam('id');
+        $id      = (int)$this->getRequest()->getParam('id');
         $message = Mage::getModel('Mediaburst_Sms/Message')->load($id);
         if ($message->getId() > 0 && $message->getId() == $id) {
             if ($message->getStatus() == Mediaburst_Sms_Model_Message::STATUS_SENT) {
@@ -101,7 +101,8 @@ class Mediaburst_Sms_Mediaburst_SmsController extends Mage_Adminhtml_Controller_
                     $message->setErrorDescription(null);
                     $message->save();
                     $this->_getSession()->addSuccess($this->__('Requeued message %s to %s', $message->getId(), $message->getTo()));
-                } catch (Exception $e) {
+                }
+                catch (Exception $e) {
                     $this->_getSession()->addException($e, $e->getMessage());
                 }
             } else {
@@ -116,7 +117,7 @@ class Mediaburst_Sms_Mediaburst_SmsController extends Mage_Adminhtml_Controller_
 
     public function retryAction()
     {
-        $id = (int) $this->getRequest()->getParam('id');
+        $id      = (int)$this->getRequest()->getParam('id');
         $message = Mage::getModel('Mediaburst_Sms/Message')->load($id);
         if ($message->getId() > 0 && $message->getId() == $id) {
             if ($message->getStatus() == Mediaburst_Sms_Model_Message::STATUS_FAILED) {
@@ -127,7 +128,8 @@ class Mediaburst_Sms_Mediaburst_SmsController extends Mage_Adminhtml_Controller_
                     $message->setErrorDescription(null);
                     $message->save();
                     $this->_getSession()->addSuccess($this->__('Retrying message %s to %s', $message->getId(), $message->getTo()));
-                } catch (Exception $e) {
+                }
+                catch (Exception $e) {
                     $this->_getSession()->addException($e, $e->getMessage());
                 }
             } else {
@@ -174,5 +176,4 @@ class Mediaburst_Sms_Mediaburst_SmsController extends Mage_Adminhtml_Controller_
     {
         return Mage::getSingleton('admin/session')->isAllowed('sales/mediaburst_sms/' . $permission);
     }
-
 }

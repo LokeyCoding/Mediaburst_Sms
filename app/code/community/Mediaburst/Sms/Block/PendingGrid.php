@@ -38,25 +38,28 @@ class Mediaburst_Sms_Block_PendingGrid extends Mediaburst_Sms_Block_AbstractMess
     protected function _prepareColumns()
     {
         if (Mage::getSingleton('admin/session')->isAllowed('sales/mediaburst_sms/send')) {
-            $this->addColumnAfter('action', array(
-                'header' => $this->__('Action'),
-                'width' => '50px',
-                'type' => 'action',
-                'getter' => 'getId',
-                'actions' => array(
-                    array(
-                        'caption' => $this->__('Send'),
-                        'url' => array('base' => '*/*/send'),
-                        'field' => 'id'
-                    )
+            $this->addColumnAfter(
+                'action',
+                array(
+                     'header'    => $this->__('Action'),
+                     'width'     => '50px',
+                     'type'      => 'action',
+                     'getter'    => 'getId',
+                     'filter'    => false,
+                     'sortable'  => false,
+                     'is_system' => true,
+                     'actions'   => array(
+                         array(
+                             'caption' => $this->__('Send'),
+                             'url'     => array('base' => '*/*/send'),
+                             'field'   => 'id'
+                         )
+                     )
                 ),
-                'filter' => false,
-                'sortable' => false,
-                'is_system' => true,
-                ), 'content');
+                'content'
+            );
         }
 
         return parent::_prepareColumns();
     }
-
 }
