@@ -1,6 +1,6 @@
 <?php
 /**
- * MediaBurst SMS Magento Integration
+ * Mediaburst SMS Magento Integration
  *
  * Copyright © 2011 by Mediaburst Limited
  *
@@ -17,7 +17,7 @@
  * OF THIS SOFTWARE.
  *
  * @category  Mage
- * @package   MediaBurst_Sms
+ * @package   Mediaburst_Sms
  * @license   http://opensource.org/licenses/isc-license.txt
  * @copyright Copyright © 2011 by Mediaburst Limited
  * @author    Lee Saferite <lee.saferite@lokeycoding.com>
@@ -26,7 +26,7 @@
 /**
  * Helper
  */
-class MediaBurst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements MediaBurst_Sms_Model_ApiConfig
+class Mediaburst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements Mediaburst_Sms_Model_ApiConfig
 {
     const XML_CONFIG_BASE_PATH = 'mediaburst_sms/';
 
@@ -280,7 +280,7 @@ class MediaBurst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements Me
      * Convert a result array into a series of session messages
      *
      * @param Mage_Core_Model_Session_Abstract $session
-     * @return MediaBurst_Sms_Helper_Data
+     * @return Mediaburst_Sms_Helper_Data
      */
     public function reportResults(Mage_Core_Model_Session_Abstract $session, array $result)
     {
@@ -341,7 +341,7 @@ class MediaBurst_Sms_Helper_Data extends Mage_Core_Helper_Abstract implements Me
      *
      * @param Mage_Sales_Model_Order $order
      * @param string $comment
-     * @return MediaBurst_Sms_Helper_Data
+     * @return Mediaburst_Sms_Helper_Data
      */
     public function addOrderComment(Mage_Sales_Model_Order $order, $comment)
     {
